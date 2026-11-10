@@ -1,0 +1,15 @@
+const CAMS = [
+  { id: "cascais-guincho-sul", name: "Praia do Guincho Sul", type: "hls", url: "https://video-auth1.iol.pt/beachcam/praiaguinchosul/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "cascais-cresmina", name: "Praia da Cresmina", type: "hls", url: "https://video-auth1.iol.pt/beachcam/crismina/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "cascais-baia-cascais", name: "Baía de Cascais (Praia do Peixe)", type: "hls", url: "https://video-auth1.iol.pt/beachcam/praiadospescadores/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "cascais-pescadores", name: "Praia dos Pescadores", type: "hls", url: "https://video-auth1.iol.pt/beachcam/bcpescadores/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "cascais-conceicao-duquesa", name: "Praia da Conceição e Duquesa", type: "hls", url: "https://video-auth1.iol.pt/beachcam/conceicao/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "cascais-tamariz", name: "Praia do Tamariz (Estoril)", type: "hls", url: "https://video-auth1.iol.pt/beachcam/tamariz/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "cascais-moitas-statica", name: "Praia das Moitas", type: "hls", url: "https://video-auth1.iol.pt/beachcam/bctamarizfixa/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "cascais-avencas", name: "Praia das Avencas", type: "hls", url: "https://video-auth1.iol.pt/beachcam/praiadasavencas/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "cascais-parede", name: "Praia da Parede", type: "hls", url: "https://video-auth1.iol.pt/beachcam/parede/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "cascais-carcavelos", name: "Praia de Carcavelos", type: "hls", url: "https://video-auth1.iol.pt/beachcam/carcavelos/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "cascais-carcavelos-calhau", name: "Carcavelos — Calhau", type: "hls", url: "https://video-auth1.iol.pt/beachcam/carcavelos2/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "cascais-carcavelos-norte-statica", name: "Carcavelos Norte", type: "hls", url: "https://video-auth1.iol.pt/beachcam/bccarcavelosnortefixa/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "cascais-carcavelos-calhau-statica", name: "Carcavelos Calhau (fixed)", type: "hls", url: "https://video-auth1.iol.pt/beachcam/bccarcaveloscalhaufixa/playlist.m3u8", credit: "MEO Beachcam" },
+];
