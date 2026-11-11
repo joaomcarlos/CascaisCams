@@ -118,6 +118,24 @@ h1 span { color: var(--accent); }
 .tile.offline .live-dot { background: #f87171; box-shadow: none; }
 .tile.offline { outline-style: dashed; cursor: default; }
 
+.tile .close-btn {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.tile.paused .live-dot { background: var(--muted); box-shadow: none; }
+
 .tile .mute-btn {
   position: absolute;
   top: 8px;
