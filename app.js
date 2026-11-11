@@ -351,6 +351,21 @@ if (mosaic.canPlayType("application/vnd.apple.mpegurl")) {
   mosaic._hls = hls;
 }
 
+const sizeSlider = document.getElementById("tile-size");
+sizeSlider.value = localStorage.getItem("tileSize") || "300";
+const applySize = () =>
+  flip(() =>
+    document.documentElement.style.setProperty(
+      "--tile-min",
+      sizeSlider.value + "px"
+    )
+  );
+sizeSlider.addEventListener("input", () => {
+  applySize();
+  localStorage.setItem("tileSize", sizeSlider.value);
+});
+applySize();
+
 mosaic.addEventListener(
   "playing",
   () => {
