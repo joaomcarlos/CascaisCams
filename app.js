@@ -379,5 +379,19 @@ mosaic.addEventListener(
   { once: true }
 );
 mosaic.play().catch(() => {});
+
+let lastT = -1;
+setInterval(() => {
+  if (document.hidden || !mosaic.videoWidth) return;
+  if (mosaic.paused) {
+    mosaic.play().catch(() => {});
+    return;
+  }
+  if (mosaic.currentTime === lastT && mosaic.seekable.length) {
+    mosaic.currentTime = mosaic.seekable.end(mosaic.seekable.length - 1);
+  }
+  lastT = mosaic.currentTime;
+}, 5000);
+
 setInterval(updateStatus, 5000);
 updateStatus();
