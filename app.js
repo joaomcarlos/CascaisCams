@@ -61,10 +61,13 @@ function playTile(tile) {
   const state = tile.querySelector(".state");
   if (state) state.remove();
   if (tile._video) {
-    if (tile._hls) tile._hls.startLoad();
+    if (!tile._attached) {
+      tile._attached = true;
+      attachHls(tile);
+    } else if (tile._hls) {
+      tile._hls.startLoad();
+    }
     tile._video.play().catch(() => {});
-  } else if (tile._cam.type === "hls") {
-    attachHls(tile);
   }
   updateStatus();
 }
