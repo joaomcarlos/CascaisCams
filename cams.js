@@ -14,7 +14,9 @@ const CAMS = [
   { id: "cascais-carcavelos-calhau-statica", name: "Carcavelos Calhau (fixed)", type: "hls", url: "https://video-auth1.iol.pt/beachcam/bccarcaveloscalhaufixa/playlist.m3u8", credit: "MEO Beachcam" },
   { id: "cascais-matadouro-skatepark", name: "Matadouro Skatepark", type: "hls", url: "https://video-auth1.iol.pt/beachcam/matadouroskatepark/playlist.m3u8", credit: "MEO Beachcam", page: "https://beachcam.meo.pt/livecams/matadouro/" },
   { id: "cascais-matadouro-skate", name: "Matadouro Skatepark (angle 2)", type: "hls", url: "https://video-auth1.iol.pt/beachcam/matadouroskate/playlist.m3u8", credit: "MEO Beachcam", page: "https://beachcam.meo.pt/livecams/boardriders-skatepark/" },
+  { id: "oeiras-santo-amaro", name: "Praia de Santo Amaro (Oeiras)", type: "hls", url: "https://video-auth1.iol.pt/beachcam/santoamaro/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "oeiras-torre", name: "Praia da Torre (Oeiras)", type: "hls", url: "https://video-auth1.iol.pt/beachcam/bctorre/playlist.m3u8", credit: "MEO Beachcam" },
+  { id: "oeiras-paco-arcos", name: "Paço de Arcos (Oeiras)", type: "hls", url: "https://video-auth1.iol.pt/beachcam/parcos/playlist.m3u8", credit: "MEO Beachcam" },
   { id: "windy-marina", name: "Marina de Cascais", type: "iframe", url: "https://webcams.windy.com/webcams/public/embed/player?webcamId=1615882831&playerType=live&loop=0&autoPlay=1&interactive=1", credit: "Windy" },
   { id: "windy-alcabideche", name: "Alcabideche — vista sul", type: "iframe", url: "https://webcams.windy.com/webcams/public/embed/player?webcamId=1747293443&playerType=live&loop=0&autoPlay=1&interactive=1", credit: "Windy" },
-  { id: "windy-torre", name: "Praia da Torre / São Julião", type: "iframe", url: "https://webcams.windy.com/webcams/public/embed/player?webcamId=1570301006&playerType=live&loop=0&autoPlay=1&interactive=1", credit: "Windy" },
 ];
