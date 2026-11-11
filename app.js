@@ -11,6 +11,8 @@ const ICON_OFF =
   '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
 const ICON_ON =
   '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.4 5.6a9 9 0 0 1 0 12.8"/></svg>';
+const ICON_PLAY =
+  '<svg viewBox="0 0 24 24" width="42" height="42" fill="currentColor" opacity="0.5"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 7.5v9l8-4.5z"/></svg>';
 
 const mosaic = document.createElement("video");
 mosaic.muted = true;
@@ -155,13 +157,49 @@ function unmountStream(tile) {
   }
 }
 
+const warmIframes = [];
+const MAX_WARM = 3;
+
+function showIdleState(tile) {
+  if (!tile.querySelector(".state")) {
+    const state = document.createElement("div");
+    state.className = "state";
+    state.innerHTML = ICON_PLAY;
+    tile.insertBefore(state, tile.firstChild);
+  }
+}
+
 function mountIframe(tile) {
+  if (tile._iframeEl) return;
   const cam = tile._cam;
   tile._iframeEl = document.createElement("iframe");
   tile._iframeEl.src = cam.url;
   tile._iframeEl.allow =
     "autoplay; fullscreen; encrypted-media; picture-in-picture";
+  tile._iframeEl.addEventListener("load", () => {
+    const s = tile.querySelector(".state");
+    if (s) s.remove();
+  });
   tile.appendChild(tile._iframeEl);
+}
+
+function dropIframe(tile) {
+  if (tile._iframeEl) {
+    tile._iframeEl.remove();
+    tile._iframeEl = null;
+  }
+  showIdleState(tile);
+}
+
+function warmIframe(tile) {
+  if (tile._iframeEl || tile.classList.contains("offline")) return;
+  while (warmIframes.length >= MAX_WARM) {
+    const old = warmIframes.shift();
+    if (old === tile || old === featured) continue;
+    dropIframe(old);
+  }
+  mountIframe(tile);
+  warmIframes.push(tile);
 }
 
 function addCloseButton(tile) {
@@ -178,19 +216,12 @@ function addCloseButton(tile) {
 }
 
 function unmountIframe(tile) {
-  if (tile._iframeEl) {
-    tile._iframeEl.remove();
-    tile._iframeEl = null;
-  }
+  const w = warmIframes.indexOf(tile);
+  if (w !== -1) warmIframes.splice(w, 1);
+  dropIframe(tile);
   if (tile._closeEl) {
     tile._closeEl.remove();
     tile._closeEl = null;
-  }
-  if (!tile.querySelector(".state")) {
-    const state = document.createElement("div");
-    state.className = "state";
-    state.textContent = "click for live";
-    tile.insertBefore(state, tile.firstChild);
   }
 }
 
@@ -239,7 +270,8 @@ function buildTile(cam) {
     tile.appendChild(canvas);
     state.textContent = "connecting";
   } else {
-    state.textContent = "click for live";
+    state.innerHTML = ICON_PLAY;
+    state.title = "Click for live player";
   }
 
   const label = document.createElement("div");
@@ -262,6 +294,9 @@ function buildTile(cam) {
 
   tile.addEventListener("click", () => {
     if (!tile.classList.contains("offline")) setFeatured(tile);
+  });
+  tile.addEventListener("mouseenter", () => {
+    if (cam.type === "iframe") warmIframe(tile);
   });
   tile.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {

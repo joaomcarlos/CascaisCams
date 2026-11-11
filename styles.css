@@ -78,7 +78,8 @@ h1 span { color: var(--accent); }
   display: block;
 }
 
-.tile iframe { object-fit: unset; }
+.tile iframe { object-fit: unset; pointer-events: none; }
+.tile.featured iframe { pointer-events: auto; }
 
 .tile .label {
   position: absolute;
